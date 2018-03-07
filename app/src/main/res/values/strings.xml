@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">test_create</string>
+    <string name="hello_text">Hello World!!</string>
+    <string name="change">Change!!</string>
 </resources>
