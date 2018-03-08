@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">test_create</string>
-    <string name="hello_text">Hello World!!</string>
-    <string name="change">Change!!</string>
+    <string name="hello_text">Let\'s BASEBALL!!</string>
+    <string name="change">安打!!</string>
 </resources>
