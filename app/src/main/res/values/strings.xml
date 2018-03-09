@@ -2,4 +2,12 @@
     <string name="app_name">test_create</string>
     <string name="hello_text">Hello World!!</string>
     <string name="change">Change!!</string>
+    <string name="home">Home</string>
+    <string name="add_memo">Add_memo</string>
+    <string name="share">Share</string>
+    <string name="share_art_text">アートボードを共有</string>
+    <string name="share_memo_text">メモを共有</string>
+    <string name="setting">setting</string>
+    <string name="upload_text">アップロード</string>
+    <string name="info_text">情報</string>
 </resources>
