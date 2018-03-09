@@ -2,4 +2,16 @@
     <string name="app_name">test_create</string>
     <string name="hello_text">Let\'s BASEBALL!!</string>
     <string name="change">安打!!</string>
+    <string name="home">Home</string>
+    <string name="add_memo">Add_memo</string>
+    <string name="share">Share</string>
+    <string name="share_art_text">アートボードを共有</string>
+    <string name="share_memo_text">メモを共有</string>
+    <string name="setting">setting</string>
+    <string name="upload_text">アップロード</string>
+    <string name="info_text">情報</string>
+    <string name="one">ONE!</string>
+    <string name="two">TWO!</string>
+    <string name="three">THREE!</string>
+    <string name="goal">GOAL!</string>
 </resources>
