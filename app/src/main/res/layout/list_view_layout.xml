@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--下記はListViewのレイアウトとなる。-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp">
+
+        <ImageView
+            android:id="@+id/ListImage"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            app:srcCompat="@mipmap/ic_launcher_round"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+             />
+
+        <TextView
+            android:id="@+id/ListTitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/ListImage"
+            android:paddingTop="12dp"
+            android:text="@string/new_memo_view"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/ListSubText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ListTitleText"
+            android:layout_toEndOf="@+id/ListImage"
+            android:text="@string/new_memo_view"
+            android:textSize="14sp"/>
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

@@ -116,4 +116,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplication(), SubActivity.class);
         startActivity(intent);
     }
+
+    public void changeActivity2(View view) {
+        Intent intent = new Intent(getApplication(), ListActivity.class);
+        startActivity(intent);
+    }
 }

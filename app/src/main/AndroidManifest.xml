@@ -23,6 +23,10 @@
             android:name=".SubActivity"
             android:label="@string/new_memo_view">
         </activity>
+        <activity
+            android:name=".ListActivity"
+            android:label="@string/all_memo">
+        </activity>
     </application>
 
 </manifest>
