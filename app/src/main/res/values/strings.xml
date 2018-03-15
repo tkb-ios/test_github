@@ -14,6 +14,6 @@
     <string name="two">TWO!</string>
     <string name="three">THREE!</string>
     <string name="goal">GOAL!</string>
-    <string name="mvoeText">画面遷移</string>
+    <string name="moveText">画面遷移</string>
     <string name="new_memo_view">新規メモ</string>
 </resources>

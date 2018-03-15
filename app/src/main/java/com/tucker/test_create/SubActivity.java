@@ -1,9 +1,11 @@
 package com.tucker.test_create;
 
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 public class SubActivity extends AppCompatActivity {
 
@@ -12,12 +14,16 @@ public class SubActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sub);
 
-        Button returnButton = findViewById(R.id.returnButton);
-        returnButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+
+        Fragment fragment = new PlusOneFragment();
+        transaction.add(R.id.FragmentContainer, fragment);
+        transaction.commit();
+
+    }
+
+    public void returnButton(View v) {
+        finish();
     }
 }

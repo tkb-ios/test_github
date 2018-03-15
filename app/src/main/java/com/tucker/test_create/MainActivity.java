@@ -1,13 +1,15 @@
 package com.tucker.test_create;
 
 import android.content.Intent;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,14 +25,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button ActivityMover = findViewById(R.id.moveButton);
-        ActivityMover.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplication(), SubActivity.class);
-                startActivity(intent);
-            }
-        });
+        /***フラグメントの処理を行う。フラグメントを管理するフラグメントマネージャを用意し、
+         * トランザクション内に設置したいフラグメントを追加していく。
+         * 下記の場合は、事前にレイアウトファイルにてフラグメントの入れ物(FrameLayout等)を用意する必要がある。***/
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+
+        Fragment fragment = new PlusOneFragment();
+        Fragment fragment2 = new PlusOneFragment();
+
+        transaction.add(R.id.FragmentContainer, fragment);
+        transaction.add(R.id.FragmentContainer2, fragment2);
+
+
+        // FragmentContainer のレイアウトの中身を、MyFragment に置き換える
+//        transaction.replace(R.id.FragmentContainer, );
+
+        // Fragment を削除する
+        //transaction.remove(fragment);
+
+        // 変更を確定して FragmentTransaction を終える
+        transaction.commit();
+
     }
 
     /***右上ActionBarにMenuリソースを反映するために必要。詳しくはres/menu/main.xml参照。
@@ -94,5 +110,10 @@ public class MainActivity extends AppCompatActivity {
 //            change_flag = true;
 //            hellotext.setText("Hello World!!");
 //        }
+    }
+
+    public void changeActivity(View view) {
+        Intent intent = new Intent(getApplication(), SubActivity.class);
+        startActivity(intent);
     }
 }
