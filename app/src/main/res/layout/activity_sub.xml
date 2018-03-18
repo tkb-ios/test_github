@@ -36,7 +36,7 @@
             android:background="#00000000"
 
             android:ems="5"
-            android:hint="本文はここから記述\n"
+            android:hint="本文はここから記述"
             android:inputType="textMultiLine"
             android:textSize="18sp" />
 
@@ -60,6 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="returnButton"
             android:text="戻る" />
 
         <Button
@@ -68,6 +69,13 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="メモを追加" />
+
+        <FrameLayout
+            android:id="@+id/FragmentContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+        </FrameLayout>
     </LinearLayout>
 
 
