@@ -10,15 +10,20 @@ import android.widget.TextView;
 import java.util.List;
 
 /***ArrayAdapterクラスを継承して、ListViewに独自レイアウトを指定できる***/
-public class CustomListViewAdapter extends ArrayAdapter<String> {
+public class CustomListViewAdapter extends ArrayAdapter {
 
     private LayoutInflater myLayoutInflater;
 
-    public CustomListViewAdapter(Context context, List<String> objects) {
+    /**コンストラクタ**/
+    CustomListViewAdapter(Context context, List<Memos> objects) {
         super(context, 0, objects);
         myLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
+
+    /** リストの表示・管理にはGoogle推奨のViewHolderパターンを使用。
+     *  ViewHolderパターンを使うことによって、メモリリークや内部処理を少なく抑えることができる
+     *  getView()メソッドでは、画面に表示されるそれぞれのリストアイテムに値を結びつける役割を果たす。**/
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -32,12 +37,12 @@ public class CustomListViewAdapter extends ArrayAdapter<String> {
         }
 
         // リストアイテムに対応するデータを取得する
-        String item = getItem(position);
+        Memos item = (Memos)getItem(position);
 
         TextView text1 = view.findViewById(R.id.ListTitleText);
-        text1.setText("題名：" + item);
         TextView text2 = view.findViewById(R.id.ListSubText);
-        text2.setText("Sub Title:" + item);
+        text1.setText(item.getTitle());
+        text2.setText(item.getMemo());
 
         return view;
     }

@@ -28,24 +28,24 @@ public class MainActivity extends AppCompatActivity {
         /***フラグメントの処理を行う。フラグメントを管理するフラグメントマネージャを用意し、
          * トランザクション内に設置したいフラグメントを追加していく。
          * 下記の場合は、事前にレイアウトファイルにてフラグメントの入れ物(FrameLayout等)を用意する必要がある。***/
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-
-        Fragment fragment = new PlusOneFragment();
-        Fragment fragment2 = new PlusOneFragment();
-
-        transaction.add(R.id.FragmentContainer, fragment);
-        transaction.add(R.id.FragmentContainer2, fragment2);
-
-
-        // FragmentContainer のレイアウトの中身を、MyFragment に置き換える
+//        FragmentManager manager = getSupportFragmentManager();
+//        FragmentTransaction transaction = manager.beginTransaction();
+//
+//        Fragment fragment = new PlusOneFragment();
+//        Fragment fragment2 = new PlusOneFragment();
+//
+//        transaction.add(R.id.FragmentContainer, fragment);
+//        transaction.add(R.id.FragmentContainer2, fragment2);
+//
+//
+//         FragmentContainer のレイアウトの中身を、MyFragment に置き換える
 //        transaction.replace(R.id.FragmentContainer, );
-
-        // Fragment を削除する
-        //transaction.remove(fragment);
-
-        // 変更を確定して FragmentTransaction を終える
-        transaction.commit();
+//
+//         Fragment を削除する
+//        transaction.remove(fragment);
+//
+//         変更を確定して FragmentTransaction を終える
+//        transaction.commit();
 
     }
 
