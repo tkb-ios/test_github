@@ -14,11 +14,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+/**
+ * 新しいメモを追加するためのActivityを管理するクラス
+ */
 public class SubActivity extends AppCompatActivity {
 
+    /**「メモを追加」を押されたことを判定するために必要*/
     public Button commitButton;
-    private EditText titleTxt,mainTxt;
+    /**タイトル名の入力を管理する*/
+    private EditText titleTxt;
+    /**本文の入力を管理する*/
+    private EditText mainTxt;
 
+    /**最初に画面を構築するために呼ばれるメソッド*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

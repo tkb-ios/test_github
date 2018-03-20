@@ -13,21 +13,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+/**
+ * 一番最初に表示されるActivityを管理するクラス。
+ * */
 public class MainActivity extends AppCompatActivity {
 
-    /***練習としてbooleanじゃなくてintでswitchするようにしてみました
-     ***あと、当該class内でしか使わないのでprivateにしてみた、どうかなあ。あと、あまり意味なさそうだけどstaticにもしておいた***/
-    //public boolean change_flag = true;
+    /**HelloWorld部分の表示変更を管理するフラグ*/
     private static int flag = 0;
 
-    /***AppCompatActivity(大元はActivity)のonCreateメソッドのオーバーライド。よくわからない。***/
+    /**最初に画面を構築するために呼ばれるメソッド*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /***フラグメントの処理を行う。フラグメントを管理するフラグメントマネージャを用意し、
-         * トランザクション内に設置したいフラグメントを追加していく。
+        /**フラグメントの処理を行う。フラグメントを管理するフラグメントマネージャを用意し、
+         * トランザクション内に設置したいフラグメントを追加していく。<br/>
          * 下記の場合は、事前にレイアウトファイルにてフラグメントの入れ物(FrameLayout等)を用意する必要がある。***/
 //        FragmentManager manager = getSupportFragmentManager();
 //        FragmentTransaction transaction = manager.beginTransaction();
@@ -50,8 +51,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    /***右上ActionBarにMenuリソースを反映するために必要。詳しくはres/menu/main.xml参照。
-     ***メソッド内のコメントを解除すれば理解が深まるかと***/
+    /**<p>右上ActionBarにMenuリソースを反映する処理。詳しくはres/menu/main.xml参照<br/>
+     * メソッド内のコメントを解除すれば理解が深まるかと</p>
+     * @param menu ActionBarのMenu部分の入れ物*/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -60,7 +62,9 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    /***Menuで選択された項目に応じて処理を分ける部分。画面遷移処理を加工中***/
+    //TODO 各項目の機能を補充する
+    /**<p>ActionBarのMenuで選択された項目に応じて処理を分けるメソッド。</p>
+     * @param item menuレイアウトのタッチされた位置のコンテンツ情報*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -84,11 +88,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /***CHANGE!!ボタンが押されたときの挙動を記述するメソッド***/
-    public void hello(View view){
+    /**<p>「Change」ボタンが押されたときの挙動を記述するメソッド</p>
+     * @param view 現在のActivity情報*/
+    public void hello(View view) {
         TextView hellotext = findViewById(R.id.helloText);
 
-        switch (flag++){
+        switch (flag++) {
             case 0:
                 hellotext.setText(R.string.one);
                 break;
@@ -103,21 +108,17 @@ public class MainActivity extends AppCompatActivity {
                 flag = 0;
                 break;
         }
-
-//        if(change_flag){
-//            change_flag = false;
-//            hellotext.setText("Good Night...");
-//        } else {
-//            change_flag = true;
-//            hellotext.setText("Hello World!!");
-//        }
     }
 
+    /**<p>「新規メモ追加」画面への遷移を行う処理,「新規メモ追加」ボタンのonClick()に割り当て</p>
+     * @param view 現在のActivity情報*/
     public void changeActivity(View view) {
         Intent intent = new Intent(getApplication(), SubActivity.class);
         startActivity(intent);
     }
 
+    /**<p>「一覧表示」画面への遷移を行う処理,「一覧表示」ボタンのonClick()に割り当て</p>
+     * @param view 現在のActivity情報*/
     public void changeActivity2(View view) {
         Intent intent = new Intent(getApplication(), ListActivity.class);
         startActivity(intent);

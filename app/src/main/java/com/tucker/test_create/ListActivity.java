@@ -19,12 +19,18 @@ import java.util.ArrayList;
 import android.support.design.widget.Snackbar;
 import android.widget.Toast;
 
+/**リスト表示Activityを管理するためのクラス,リスト表示自体はRecyclerViewを採用<br/>
+ * 特殊な操作に対応できるようにCustomItemTouchHelper.CustomItemTouchHelperListenerインタフェースを実装している。*/
 public class ListActivity extends AppCompatActivity implements CustomItemTouchHelper.CustomItemTouchHelperListener{
 
+    /**リスト表示するコレクション*/
     private ArrayList<Memos> memoList = new ArrayList<>();
+    /**RecyclerViewでのレイアウト表示を管理するAdapter*/
     private CustomRecycleAdapter myAdapter;
+    /**リスト表示を行うView*/
     private ConstraintLayout constraintLayout;
 
+    /**最初に画面を構築するために呼ばれるメソッド*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,12 +41,12 @@ public class ListActivity extends AppCompatActivity implements CustomItemTouchHe
 
 
 
-        /**データベースから情報を受け取るための設定
+        /*データベースから情報を受け取るための設定
          * 1. このActivityにおいてのデータベース取扱設定をまとめたSQLiteOpenHelperを用意する。
          *      x. 今回はSQLiteOpenHelperを継承したDBHelperクラスを使用している。
          *
          * 2. Helperを参照しデータベース起動
-         * 3. query,delete,insert,汎用的なexecSQLなどを使ってデータベース処理をする**/
+         * 3. query,delete,insert,汎用的なexecSQLなどを使ってデータベース処理をする*/
         DBHelper helper = new DBHelper(this);
         SQLiteDatabase db = helper.getReadableDatabase();
 
@@ -54,12 +60,12 @@ public class ListActivity extends AppCompatActivity implements CustomItemTouchHe
 
 
 
-        /**RecycleViewを設定(リストを表示するための管理クラス)
+        /*RecycleViewを設定(リストを表示するための管理クラス)
          * 1. RecycleViewのデザイン表示形式としてLinearLayoutManagerを指定
          * 2. RecycleViewにて行う操作をまとめたadapterを指定
          * 3. リストアイテムがタッチされた時の挙動を制御するItemTouchHelperを設定。
          *      x. ItemTouchHelperの設定はItemTouchHelper.SimpleCallBackにて管理される。
-         *         今回はItemTouchHelper.SimpleCallBackを継承したCustomItemTouchHelperを使用している**/
+         *         今回はItemTouchHelper.SimpleCallBackを継承したCustomItemTouchHelperを使用している*/
         final RecyclerView mRecyclerView = findViewById(R.id.recyclerView);
         LinearLayoutManager line = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(line);
@@ -72,6 +78,10 @@ public class ListActivity extends AppCompatActivity implements CustomItemTouchHe
     }
 
 
+    /**リストのコンテンツがスワイプされた時の処理の実装
+     * @param viewHolder スワイプされたコンテンツ
+     * @param direction スワイプされた方向
+     * @param position スワイプされた場所*/
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position) {
         if (viewHolder instanceof CustomRecycleAdapter.ViewHolder) {
@@ -124,7 +134,8 @@ public class ListActivity extends AppCompatActivity implements CustomItemTouchHe
     /**End**/
 
 
-    /**戻るボタンが押された時にこのアクティビティを終了し、親アクティビティに戻る。**/
+    /**戻るボタンが押された時にこのアクティビティを終了し、親アクティビティに戻る。
+     * @param v 現在表示されているView*/
     public void returnButton(View v) {
         finish();
     }

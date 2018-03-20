@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
+/**
+ * フラグメントが実装できているか確認するためのクラス。
+ */
 public class PlusOneFragment extends Fragment {
 
     public PlusOneFragment() {
