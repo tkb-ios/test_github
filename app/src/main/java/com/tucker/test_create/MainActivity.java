@@ -123,4 +123,11 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplication(), ListActivity.class);
         startActivity(intent);
     }
+
+    /**<p>「一覧表示」画面への遷移を行う処理,「一覧表示」ボタンのonClick()に割り当て</p>
+     * @param view 現在のActivity情報*/
+    public void changeDrawer(View view) {
+        Intent intent = new Intent(getApplication(), drawer.class);
+        startActivity(intent);
+    }
 }

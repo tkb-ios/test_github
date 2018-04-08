@@ -21,12 +21,11 @@
         </activity>
         <activity
             android:name=".SubActivity"
-            android:label="@string/new_memo_view">
-        </activity>
+            android:label="@string/new_memo_view"></activity>
         <activity
             android:name=".ListActivity"
-            android:label="@string/all_memo">
-        </activity>
+            android:label="@string/all_memo"></activity>
+        <activity android:name=".drawer"></activity>
     </application>
 
 </manifest>
