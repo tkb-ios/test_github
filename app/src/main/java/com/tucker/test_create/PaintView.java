@@ -1,6 +1,7 @@
 package com.tucker.test_create;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -8,6 +9,10 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 
 public class PaintView extends View {
@@ -41,7 +46,6 @@ public class PaintView extends View {
         //描画処理
         float x=event.getX();
         float y=event.getY();
-
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 path.moveTo(x, y);
@@ -59,4 +63,7 @@ public class PaintView extends View {
         return true;
 
     }
+
+
+
 }
