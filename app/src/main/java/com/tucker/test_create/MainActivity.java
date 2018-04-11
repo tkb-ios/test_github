@@ -1,22 +1,30 @@
 package com.tucker.test_create;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 
 /**
  * 一番最初に表示されるActivityを管理するクラス。
  * */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     /**HelloWorld部分の表示変更を管理するフラグ*/
     private static int flag = 0;
@@ -26,6 +34,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
+        myToolbar.setLogo(R.mipmap.icon_memory);
+        myToolbar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+        myToolbar.setTitleTextColor(getResources().getColor(R.color.White));
+        myToolbar.setTitle("THIS IS TITLE");
+        myToolbar.setSubtitle("this is subtitle");
+        setSupportActionBar(myToolbar);
+
+        //checkNetworking(this);
 
         /**フラグメントの処理を行う。フラグメントを管理するフラグメントマネージャを用意し、
          * トランザクション内に設置したいフラグメントを追加していく。<br/>
@@ -37,16 +55,16 @@ public class MainActivity extends AppCompatActivity {
 //        Fragment fragment2 = new PlusOneFragment();
 //
 //        transaction.add(R.id.FragmentContainer, fragment);
-//        transaction.add(R.id.FragmentContainer2, fragment2);
+//        transaction.add(R.id.FragmentContainer, fragment2);
 //
 //
-//         FragmentContainer のレイアウトの中身を、MyFragment に置き換える
-//        transaction.replace(R.id.FragmentContainer, );
+//        // FragmentContainer のレイアウトの中身を、MyFragment に置き換える
+//        //transaction.replace(R.id.FragmentContainer, fragment);
 //
-//         Fragment を削除する
-//        transaction.remove(fragment);
+//        // Fragment を削除する
+//        //transaction.remove(fragment);
 //
-//         変更を確定して FragmentTransaction を終える
+//        // 変更を確定して FragmentTransaction を終える
 //        transaction.commit();
 
     }
@@ -110,10 +128,45 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    /**ネットワークの接続状況を確認するためのメソッド
+     * @param context Toastを表示するContext*/
+    public void checkNetworking(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo info = cm.getActiveNetworkInfo();
+
+        if(info == null){
+            Toast.makeText(context, "Can't connect ...", Toast.LENGTH_LONG).show();
+
+        } else {
+            //isConnected()をする前にnullチェックをしないとNullPointerExceptionで落ちる。
+            if (info.isConnected()) {
+                Toast.makeText(context, info.getTypeName() + " connected", Toast.LENGTH_LONG).show();
+            }
+            if (info.getType() == ConnectivityManager.TYPE_WIFI) {
+                //接続が Wifi の時の処理を記述
+            }
+
+        }
+
+    }
+
+
     /**<p>「新規メモ追加」画面への遷移を行う処理,「新規メモ追加」ボタンのonClick()に割り当て</p>
      * @param view 現在のActivity情報*/
     public void changeActivity(View view) {
-        Intent intent = new Intent(getApplication(), SubActivity.class);
+//        Intent intent = new Intent(getApplication(), SubActivity.class);
+//        startActivity(intent);
+        Intent intent = new Intent(this, SubActivity.class);
+        Bundle bundle = new Bundle();
+
+        //intent自体にコレクションする方法
+        //intent.putExtra("data", "value");
+
+        //bundleにコレクションする方法。最後にintentにBundleを紐付けする。
+        bundle.putString("isThis","Name");
+        intent.putExtras(bundle);
+        
         startActivity(intent);
     }
 

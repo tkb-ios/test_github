@@ -1,6 +1,7 @@
 package com.tucker.test_create;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;

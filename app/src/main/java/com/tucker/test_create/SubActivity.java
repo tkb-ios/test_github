@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.provider.AlarmClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -13,6 +15,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * 新しいメモを追加するためのActivityを管理するクラス
@@ -73,6 +76,21 @@ public class SubActivity extends AppCompatActivity {
             }
         });
         /**End**/
+
+        String string = getIntent().getExtras().getString("isThis");
+        //String string = getIntent().getStringExtra("data");
+        Toast.makeText(this, "This is : " + string, Toast.LENGTH_LONG).show();
+
+        /**下記の処理は他のアプリにデータを渡すことを実装している
+         * ここだけでなく、AndroidManifest.xmlに権限追加・intent-filterの定義等を行なっている
+         * 確認してほしい*/
+//        Intent intent = new Intent(AlarmClock.ACTION_SET_TIMER)
+//                .putExtra(AlarmClock.EXTRA_MESSAGE, "おはよう")
+//                .putExtra(AlarmClock.EXTRA_LENGTH, 20)
+//                .putExtra(AlarmClock.EXTRA_SKIP_UI, true);
+//        if (intent.resolveActivity(getPackageManager()) != null) {
+//            startActivity(intent);
+//        }
 
     }
 
