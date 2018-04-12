@@ -45,7 +45,7 @@ public class drawer extends AppCompatActivity implements View.OnClickListener {
         switch (view.getId()){
             case R.id.capture:
                 Toast.makeText(this, "画像を保存します", Toast.LENGTH_SHORT).show();
-                saveCapture(findViewById(android.R.id.content),file);
+                saveCapture(findViewById(R.id.paintView),file);
                 break;
         }
 
@@ -75,19 +75,25 @@ public class drawer extends AppCompatActivity implements View.OnClickListener {
         //書いた絵の保存を行う
         //Toast.makeText(this," saved",Toast.LENGTH_SHORT).show();
         Bitmap capture =getViewCapture(view);
+        FileOutputStream fos=null;
+        String fileName = getFileName();
+
         if(capture==null){
             Toast.makeText(this,"null",Toast.LENGTH_SHORT).show();
         }
-        FileOutputStream fos=null;
-        try {
 
-              File extStrageDir=Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);//pictureに保存
-             File dir=new File(extStrageDir.getAbsolutePath(),getFileName());
+        try {
+//            File extStrageDir=Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);//pictureに保存
+//            File dir=new File(extStrageDir.getAbsolutePath(),getFileName());
             Toast.makeText(this," 3",Toast.LENGTH_SHORT).show();
-             FileOutputStream outstream=new FileOutputStream(dir);//<-ここがおかしい
+
+//            FileOutputStream outstream=new FileOutputStream(dir);//<-ここがおかしい
+            fos = openFileOutput(fileName, Context.MODE_PRIVATE);
             Toast.makeText(this," 4",Toast.LENGTH_SHORT).show();
-            capture.compress(Bitmap.CompressFormat.PNG, 100, outstream);
-            outstream.close();
+
+            capture.compress(Bitmap.CompressFormat.PNG, 100, fos);
+            Toast.makeText(this," 5",Toast.LENGTH_SHORT).show();
+            fos.close();
 
         }catch(Exception e){
             e.printStackTrace();
